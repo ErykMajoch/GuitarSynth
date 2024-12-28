@@ -1,7 +1,7 @@
 import numpy as np
-from typing import Iterator
 from itertools import cycle
 from dataclasses import dataclass
+from typing import Iterator, Sequence
 
 from melondy.temporal import Time, Hertz
 from melondy.processing import normalise, remove_dc
@@ -39,3 +39,14 @@ class Synthesiser:
                 )
             )
         )
+
+    def overlay(self, sounds: Sequence[np.ndarray], delay: Time) -> np.ndarray:
+        num_delay_samples = delay.get_num_samples(self.sampling_rate)
+        num_samples = max(
+            i * num_delay_samples + sound.size for i, sound in enumerate(sounds)
+        )
+        samples = np.zeros(num_samples, dtype=np.float64)
+        for i, sound in enumerate(sounds):
+            offset = i * num_delay_samples
+            samples[offset : offset + sound.size] += sound
+        return samples
