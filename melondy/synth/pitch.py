@@ -1,8 +1,8 @@
 import re
-from typing import Self
 from dataclasses import dataclass
+from typing import Self
 
-from melondy.temporal import Hertz
+from .temporal import Hertz
 
 
 @dataclass(frozen=True)

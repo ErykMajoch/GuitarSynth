@@ -1,25 +1,25 @@
-import numpy as np
-from itertools import cycle
-from functools import cache
 from dataclasses import dataclass
+from functools import cache
+from itertools import cycle
 from typing import Iterator, Sequence
 
-from melondy.chord import Chord
-from melondy.temporal import Time, Hertz
-from melondy.stroke import Direction, Velocity
-from melondy.processing import normalise, remove_dc
-from melondy.burst import BurstGenerator, WhiteNoise
-from melondy.instrument import PluckedStringInstrument
+import numpy as np
 
+from .burst import BurstGenerator, WhiteNoise
+from .chord import Chord
+from .instrument import PluckedStringInstrument
+from .processing import normalise, remove_dc
+from .stroke import Direction, Velocity
+from .temporal import Hertz, Time
 
 SAMPLING_RATE = 44100
 
 
 @dataclass(frozen=True)
 class Synthesiser:
+    instrument: PluckedStringInstrument
     burst_generator: BurstGenerator = WhiteNoise()
     sampling_rate: int = SAMPLING_RATE
-    instrument: PluckedStringInstrument
 
     @cache
     def strum_strings(

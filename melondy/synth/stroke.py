@@ -1,8 +1,8 @@
 import enum
-from typing import Self
 from dataclasses import dataclass
+from typing import Self
 
-from melondy.temporal import Time
+from .temporal import Time
 
 
 class Direction(enum.Enum):

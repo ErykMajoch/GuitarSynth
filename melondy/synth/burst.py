@@ -1,6 +1,8 @@
-import numpy as np
 from typing import Protocol
-from melondy.temporal import Hertz
+
+import numpy as np
+
+from .temporal import Hertz
 
 
 class BurstGenerator(Protocol):

@@ -1,10 +1,10 @@
-from typing import Self
 from dataclasses import dataclass
 from functools import cache, cached_property
+from typing import Self
 
-from melondy.chord import Chord
-from melondy.pitch import Pitch
-from melondy.temporal import Time
+from .chord import Chord
+from .pitch import Pitch
+from .temporal import Time
 
 
 @dataclass(frozen=True)
